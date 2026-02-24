@@ -1,4 +1,3 @@
-import { h } from 'preact';
 import { useState, useRef } from 'preact/hooks';
 import clsx from 'clsx';
 import { useClickOutside } from '../../hooks/useClickOutside';

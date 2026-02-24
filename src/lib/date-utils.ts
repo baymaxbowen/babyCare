@@ -1,4 +1,4 @@
-import { differenceInDays, differenceInWeeks, addDays, format, startOfDay } from 'date-fns';
+import { differenceInDays, addDays, format, startOfDay } from 'date-fns';
 import type { PregnancyInfo, BabySize } from '../types/user';
 
 const PREGNANCY_DURATION_DAYS = 280; // 40 weeks

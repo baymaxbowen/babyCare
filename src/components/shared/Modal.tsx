@@ -1,6 +1,5 @@
 import { ComponentChildren } from 'preact';
 import { useEffect } from 'preact/hooks';
-import clsx from 'clsx';
 
 interface ModalProps {
   isOpen: boolean;

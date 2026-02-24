@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'preact/hooks';
 import { route } from 'preact-router';
-import { currentSession, isTracking, incrementCount, endSession, startSession, resetSession } from '../../stores/movementStore';
+import { currentSession, isTracking, incrementCount, endSession, resetSession } from '../../stores/movementStore';
 import { db } from '../../lib/db';
 import { vibrate } from '../../lib/notifications';
 import { MovementButton } from './MovementButton';
@@ -44,12 +44,6 @@ export function MovementCounter() {
       }, 2000);
     }
   }, [session?.count]);
-
-  const handleStart = () => {
-    startSession();
-    setElapsedTime(0);
-    setShowCelebration(false);
-  };
 
   const handleRecord = async () => {
     if (!session) return;
@@ -128,7 +122,7 @@ export function MovementCounter() {
         <MovementButton
           count={session?.count || 0}
           onClick={handleRecord}
-          disabled={session?.count >= 10}
+          disabled={(session?.count ?? 0) >= 10}
         />
       </div>
 

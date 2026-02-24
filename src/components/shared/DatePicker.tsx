@@ -1,4 +1,3 @@
-import { h } from 'preact';
 import { useState, useRef } from 'preact/hooks';
 import { format, parse, isValid } from 'date-fns';
 import clsx from 'clsx';
