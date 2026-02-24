@@ -28,6 +28,7 @@ export function DatePicker({
   maxDate,
 }: DatePickerProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [openUpward, setOpenUpward] = useState(false);
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -57,6 +58,10 @@ export function DatePicker({
   const handleOpen = () => {
     if (!disabled) {
       setCurrentMonth(selectedDate || new Date());
+      if (containerRef.current) {
+        const rect = containerRef.current.getBoundingClientRect();
+        setOpenUpward(window.innerHeight - rect.bottom < 340);
+      }
       setIsOpen(true);
     }
   };
@@ -97,7 +102,11 @@ export function DatePicker({
 
       {/* 日历面板 */}
       {isOpen && (
-        <div className="dropdown-panel dropdown-panel-calendar">
+        <div className={clsx(
+          'absolute left-0 right-0 z-50',
+          'bg-white rounded-2xl border-2 border-border shadow-lg',
+          openUpward ? 'bottom-full mb-2' : 'top-full mt-2',
+        )} style={{ animation: 'dropdown-slide-down 0.2s ease-out' }}>
           <Calendar
             selectedDate={selectedDate}
             onSelectDate={handleSelectDate}
