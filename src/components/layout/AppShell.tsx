@@ -12,7 +12,7 @@ export function AppShell({ children }: AppShellProps) {
   const direction = slideDir.value;
 
   return (
-    <div className="h-screen flex flex-col bg-bg-secondary overflow-hidden">
+    <div className="h-screen flex flex-col overflow-hidden" style={{ background: 'linear-gradient(160deg, #e8fcd4 0%, #f0fdf4 30%, #f7fef0 100%)' }}>
       {/* Install prompt */}
       <InstallPrompt />
 
