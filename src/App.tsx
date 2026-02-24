@@ -9,6 +9,7 @@ import { Settings } from './pages/Settings';
 import { ProfileEdit } from './pages/ProfileEdit';
 import { Onboarding } from './pages/Onboarding';
 import { isOnboarded } from './stores/userStore';
+import { handleRouteChange } from './stores/routerStore';
 
 export function App() {
   const onboarded = isOnboarded.value;
@@ -20,7 +21,7 @@ export function App() {
 
   return (
     <AppShell>
-      <Router>
+      <Router onChange={(e) => handleRouteChange(e.url)}>
         <Route path="/" component={Home} />
         <Route path="/movement" component={Movement} />
         <Route path="/movement/count" component={MovementCount} />

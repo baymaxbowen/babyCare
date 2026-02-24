@@ -2,6 +2,7 @@ import { useState, useEffect } from 'preact/hooks';
 import { db } from '../../lib/db';
 import { formatDate, formatTime } from '../../lib/date-utils';
 import { Card } from '../shared/Card';
+import { FileText, CheckCircle2 } from 'lucide-preact';
 import type { MovementSession } from '../../types/movement';
 
 export function MovementHistory() {
@@ -39,7 +40,7 @@ export function MovementHistory() {
   if (sessions.length === 0) {
     return (
       <div className="text-center py-12 px-6">
-        <p className="text-2xl mb-2">📝</p>
+        <div className="flex justify-center mb-2"><FileText size={32} className="text-text-secondary" /></div>
         <p className="text-text-secondary">还没有记录</p>
         <p className="text-sm text-text-secondary mt-2">开始数胎动来创建第一条记录吧</p>
       </div>
@@ -73,7 +74,7 @@ export function MovementHistory() {
             <div className="mt-3 pt-3 border-t border-border">
               <p className="text-sm text-text-secondary">
                 用时: {session.duration} 分钟
-                {session.completed && ' ✅ 完成'}
+                {session.completed && <span className="inline-flex items-center gap-1 ml-1"><CheckCircle2 size={13} className="text-primary" />完成</span>}
               </p>
             </div>
           )}

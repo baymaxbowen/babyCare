@@ -1,4 +1,5 @@
 import { ComponentChildren } from 'preact';
+import { ChevronLeft } from 'lucide-preact';
 
 type BackVariant = 'primary' | 'secondary' | 'accent';
 
@@ -25,9 +26,7 @@ export function PageLayout({ children, onBack, backVariant = 'primary' }: PageLa
               className={`w-11 h-11 flex items-center justify-center rounded-2xl text-white border-b-4 active:border-b-2 active:translate-y-0.5 shadow-md hover:shadow-lg transition-all ${backStyles[backVariant]}`}
               aria-label="返回"
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
-              </svg>
+              <ChevronLeft size={22} strokeWidth={2.5} />
             </button>
           </div>
         )}

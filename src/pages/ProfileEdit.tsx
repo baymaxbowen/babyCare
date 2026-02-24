@@ -5,6 +5,7 @@ import { Button } from '../components/shared/Button';
 import { DatePicker } from '../components/shared/DatePicker';
 import { Toast } from '../components/shared/Toast';
 import { PageLayout } from '../components/layout/PageLayout';
+import { Lightbulb } from 'lucide-preact';
 
 export function ProfileEdit() {
   const [userName, setUserName] = useState(userProfile.value?.userName || '');
@@ -70,8 +71,8 @@ export function ProfileEdit() {
                 onChange={setDueDate}
                 required
               />
-              <p className="text-xs text-text-secondary mt-2">
-                💡 不确定可以使用末次月经日期 + 280天
+              <p className="text-xs text-text-secondary mt-2 flex items-center gap-1">
+                <Lightbulb size={12} />不确定可以使用末次月经日期 + 280天
               </p>
             </div>
 

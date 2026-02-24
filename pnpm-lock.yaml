@@ -20,6 +20,9 @@ importers:
       dexie:
         specifier: ^3.2.5
         version: 3.2.7
+      lucide-preact:
+        specifier: ^0.575.0
+        version: 0.575.0(preact@10.28.4)
       preact:
         specifier: ^10.19.5
         version: 10.28.4
@@ -1600,6 +1603,11 @@ packages:
 
   lru-cache@5.1.1:
     resolution: {integrity: sha512-KpNARQA3Iwv+jTA0utUVVbrh+Jlrr1Fv0e56GGzAFOXN7dk/FviaDW8LHmK52DlcH4WP2n6gI8vN1aesBFgo9w==}
+
+  lucide-preact@0.575.0:
+    resolution: {integrity: sha512-W8JZyQEkYv6DlbRrEgmZxVWFKL3zjoyEkFOOSxiX2VEU6Gou8cOqXZ5IAGmqAL4KiPx1tWgGT9awNjAH7MFknw==}
+    peerDependencies:
+      preact: ^10.27.2
 
   magic-string@0.25.9:
     resolution: {integrity: sha512-RmF0AsMzgt25qzqqLc1+MbHmhdx0ojF2Fvs4XnOqz2ZOBXzzkEwc/dJQZCYHAn7v1jbVOjAZfK8msRn4BxO4VQ==}
@@ -3883,6 +3891,10 @@ snapshots:
   lru-cache@5.1.1:
     dependencies:
       yallist: 3.1.1
+
+  lucide-preact@0.575.0(preact@10.28.4):
+    dependencies:
+      preact: 10.28.4
 
   magic-string@0.25.9:
     dependencies:

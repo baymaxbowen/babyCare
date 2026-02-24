@@ -6,6 +6,7 @@ import { DueDateCounter } from '../components/countdown/DueDateCounter';
 import { Card } from '../components/shared/Card';
 import { Toast } from '../components/shared/Toast';
 import { getUpcomingCheckups } from '../lib/notifications';
+import { Baby, ClipboardList, Lightbulb } from 'lucide-preact';
 import type { Checkup } from '../types/checkup';
 
 export function Home() {
@@ -66,7 +67,7 @@ export function Home() {
             className="text-center cursor-pointer hover:shadow-lg transition-shadow"
             onClick={() => route('/movement')}
           >
-            <div className="text-4xl mb-2">👶</div>
+            <div className="flex justify-center mb-2"><Baby size={40} className="text-primary" /></div>
             <p className="font-bold text-text-primary">数胎动</p>
             <p className="text-xs text-text-secondary mt-1">
               本周 {recentSessionCount} 次
@@ -77,7 +78,7 @@ export function Home() {
             className="text-center cursor-pointer hover:shadow-lg transition-shadow"
             onClick={() => route('/checkups')}
           >
-            <div className="text-4xl mb-2">📋</div>
+            <div className="flex justify-center mb-2"><ClipboardList size={40} className="text-accent" /></div>
             <p className="font-bold text-text-primary">产检提醒</p>
             <p className="text-xs text-text-secondary mt-1">
               {upcomingCheckups.length > 0
@@ -91,7 +92,7 @@ export function Home() {
       {/* Tips */}
       <Card className="bg-gradient-to-br from-primary to-primary-dark text-white">
         <div className="flex items-start gap-3">
-          <span className="text-3xl">💡</span>
+          <Lightbulb size={28} className="flex-shrink-0 text-yellow-200" />
           <div>
             <p className="font-bold mb-1">温馨提示</p>
             <p className="text-sm opacity-90">

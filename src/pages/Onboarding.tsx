@@ -4,6 +4,7 @@ import { completeOnboarding } from '../stores/userStore';
 import { Button } from '../components/shared/Button';
 import { DatePicker } from '../components/shared/DatePicker';
 import { Toast } from '../components/shared/Toast';
+import { Baby, Lightbulb, Smartphone } from 'lucide-preact';
 
 export function Onboarding() {
   const [dueDate, setDueDate] = useState('');
@@ -29,7 +30,7 @@ export function Onboarding() {
       <div className="max-w-md w-full bg-white rounded-3xl shadow-2xl p-8 border-2 border-border">
         {/* Header */}
         <div className="text-center mb-8">
-          <div className="text-7xl mb-4">👶</div>
+          <div className="flex justify-center mb-4"><Baby size={80} className="text-primary" /></div>
           <h1 className="text-4xl font-black text-text-primary mb-3">
             欢迎使用
           </h1>
@@ -67,8 +68,8 @@ export function Onboarding() {
               onChange={setDueDate}
               required
             />
-            <p className="text-xs text-text-secondary mt-2">
-              💡 不确定可以使用末次月经日期 + 280天
+            <p className="text-xs text-text-secondary mt-2 flex items-center gap-1">
+              <Lightbulb size={12} />不确定可以使用末次月经日期 + 280天
             </p>
           </div>
 
@@ -82,8 +83,8 @@ export function Onboarding() {
 
         {/* Footer */}
         <div className="mt-8 p-4 bg-blue-50 rounded-2xl">
-          <p className="text-xs text-text-secondary text-center">
-            📱 本应用支持离线使用，数据保存在本地设备
+          <p className="text-xs text-text-secondary text-center flex items-center justify-center gap-1">
+            <Smartphone size={12} />本应用支持离线使用，数据保存在本地设备
           </p>
         </div>
       </div>

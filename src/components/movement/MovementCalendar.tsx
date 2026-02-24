@@ -2,6 +2,7 @@ import { useState, useEffect } from 'preact/hooks';
 import { startOfMonth, endOfMonth, eachDayOfInterval, format, isSameDay, startOfWeek, endOfWeek, isSameMonth, addMonths, subMonths } from 'date-fns';
 import { db } from '../../lib/db';
 import { Card } from '../shared/Card';
+import { Check, X } from 'lucide-preact';
 import type { MovementSession } from '../../types/movement';
 
 interface DayData {
@@ -195,7 +196,7 @@ export function MovementCalendar() {
               onClick={() => setSelectedDay(null)}
               className="text-text-secondary hover:text-text-primary"
             >
-              ✕
+              <X size={18} />
             </button>
           </div>
 
@@ -230,8 +231,8 @@ export function MovementCalendar() {
                     </p>
                   </div>
                   {session.completed && (
-                    <span className="text-xs px-2 py-1 bg-primary text-white rounded-full">
-                      ✓
+                    <span className="flex items-center justify-center w-5 h-5 bg-primary text-white rounded-full">
+                      <Check size={11} strokeWidth={3} />
                     </span>
                   )}
                 </div>

@@ -4,6 +4,7 @@ import { db } from '../../lib/db';
 import { CheckupCard } from './CheckupCard';
 import { Button } from '../shared/Button';
 import { Toast } from '../shared/Toast';
+import { ClipboardList } from 'lucide-preact';
 import type { Checkup } from '../../types/checkup';
 
 export function CheckupList() {
@@ -100,7 +101,7 @@ export function CheckupList() {
       {/* Empty state */}
       {checkups.length === 0 && (
         <div className="text-center py-12">
-          <p className="text-4xl mb-4">📋</p>
+          <div className="flex justify-center mb-4"><ClipboardList size={48} className="text-text-secondary" /></div>
           <p className="text-text-secondary mb-4">还没有产检记录</p>
           <Button onClick={handleAdd} variant="primary">
             添加第一次产检

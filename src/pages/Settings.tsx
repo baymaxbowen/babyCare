@@ -9,6 +9,7 @@ import { Modal } from '../components/shared/Modal';
 import { Toast } from '../components/shared/Toast';
 import { WeekProgress } from '../components/countdown/WeekProgress';
 import { PageLayout } from '../components/layout/PageLayout';
+import { Lightbulb, AlertTriangle } from 'lucide-preact';
 
 export function Settings() {
   const [showResetModal, setShowResetModal] = useState(false);
@@ -116,8 +117,9 @@ export function Settings() {
           <div className="space-y-2 text-sm text-text-secondary">
             <p>版本: 0.0.1</p>
             <p>本应用数据存储在本地设备，不会上传到服务器</p>
-            <p className="mt-4 text-xs">
-              💡 提示：本应用仅供参考，不能替代专业医疗建议。如有任何疑问或不适，请及时咨询医生。
+            <p className="mt-4 text-xs flex items-start gap-1.5">
+              <Lightbulb size={13} className="flex-shrink-0 mt-0.5" />
+              <span>提示：本应用仅供参考，不能替代专业医疗建议。如有任何疑问或不适，请及时咨询医生。</span>
             </p>
           </div>
         </Card>
@@ -129,7 +131,7 @@ export function Settings() {
         title="确认重置"
       >
         <div className="text-center py-4">
-          <p className="text-4xl mb-4">⚠️</p>
+          <div className="flex justify-center mb-4"><AlertTriangle size={48} className="text-warning" /></div>
           <p className="text-text-primary font-bold mb-2">确定要重置所有数据吗？</p>
           <p className="text-sm text-text-secondary mb-6">
             这将删除所有胎动记录、产检记录和个人设置，此操作不可恢复！

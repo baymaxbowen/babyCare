@@ -2,6 +2,7 @@ import { useState, useEffect } from 'preact/hooks';
 import { format, subDays, startOfDay, isSameDay, isToday, isYesterday } from 'date-fns';
 import { db } from '../../lib/db';
 import { Card } from '../shared/Card';
+import { Check } from 'lucide-preact';
 import type { MovementSession } from '../../types/movement';
 
 interface DayRecord {
@@ -169,8 +170,8 @@ export function MovementTrend() {
                       {/* 完成标记 */}
                       {session.completed && (
                         <div className="flex items-center gap-1">
-                          <span className="text-xs px-2 py-1 bg-primary text-white rounded-full">
-                            ✓
+                          <span className="flex items-center justify-center w-5 h-5 bg-primary text-white rounded-full">
+                            <Check size={11} strokeWidth={3} />
                           </span>
                         </div>
                       )}

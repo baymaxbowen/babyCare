@@ -6,6 +6,7 @@ import { vibrate } from '../../lib/notifications';
 import { MovementButton } from './MovementButton';
 import { Button } from '../shared/Button';
 import { Toast } from '../shared/Toast';
+import { Sparkles } from 'lucide-preact';
 import type { Movement } from '../../types/movement';
 
 export function MovementCounter() {
@@ -36,7 +37,7 @@ export function MovementCounter() {
     if (session && session.count === 10 && !showCelebration) {
       setShowCelebration(true);
       vibrate([200, 100, 200]);
-      showMessage('太棒了！完成今天的计数 🎉');
+      showMessage('太棒了！完成今天的计数！');
 
       // Auto-save after 2 seconds
       setTimeout(() => {
@@ -141,8 +142,8 @@ export function MovementCounter() {
       {/* Celebration */}
       {showCelebration && (
         <div className="mb-6 p-4 bg-primary bg-opacity-10 rounded-2xl">
-          <p className="text-xl font-bold text-primary text-center">
-            🎉 宝宝很活跃呢！
+          <p className="text-xl font-bold text-primary text-center flex items-center justify-center gap-2">
+            <Sparkles size={20} />宝宝很活跃呢！<Sparkles size={20} />
           </p>
         </div>
       )}

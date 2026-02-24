@@ -1,5 +1,6 @@
 import { formatDate, formatTime } from '../../lib/date-utils';
 import { Card } from '../shared/Card';
+import { MapPin, MessageSquare, Check, AlertTriangle, Bell, Trash2, Pencil, RotateCcw } from 'lucide-preact';
 import type { Checkup } from '../../types/checkup';
 
 interface CheckupCardProps {
@@ -33,23 +34,23 @@ export function CheckupCard({ checkup, onEdit, onDelete, onToggleComplete }: Che
 
           {/* Location */}
           {checkup.location && (
-            <p className="text-sm text-text-secondary mt-2">
-              📍 {checkup.location}
+            <p className="text-sm text-text-secondary mt-2 flex items-center gap-1">
+              <MapPin size={13} className="flex-shrink-0" />{checkup.location}
             </p>
           )}
 
           {/* Notes */}
           {checkup.notes && (
-            <p className="text-sm text-text-secondary mt-2">
-              💭 {checkup.notes}
+            <p className="text-sm text-text-secondary mt-2 flex items-start gap-1">
+              <MessageSquare size={13} className="flex-shrink-0 mt-0.5" />{checkup.notes}
             </p>
           )}
 
           {/* Status */}
           <div className="mt-3 flex items-center gap-2">
             {checkup.completed && (
-              <span className="text-xs px-2 py-1 bg-primary text-white rounded-full">
-                ✓ 已完成
+              <span className="text-xs px-2 py-1 bg-primary text-white rounded-full flex items-center gap-1">
+                <Check size={11} strokeWidth={3} />已完成
               </span>
             )}
             {isUpcoming && !checkup.completed && (
@@ -58,13 +59,13 @@ export function CheckupCard({ checkup, onEdit, onDelete, onToggleComplete }: Che
               </span>
             )}
             {isPast && (
-              <span className="text-xs px-2 py-1 bg-warning text-text-primary rounded-full">
-                ⚠️ 已过期
+              <span className="text-xs px-2 py-1 bg-warning text-text-primary rounded-full flex items-center gap-1">
+                <AlertTriangle size={11} strokeWidth={2.5} />已过期
               </span>
             )}
             {checkup.reminderEnabled && (
-              <span className="text-xs px-2 py-1 bg-gray-200 text-text-secondary rounded-full">
-                🔔 已开启提醒
+              <span className="text-xs px-2 py-1 bg-gray-200 text-text-secondary rounded-full flex items-center gap-1">
+                <Bell size={11} />已开启提醒
               </span>
             )}
           </div>
@@ -78,7 +79,7 @@ export function CheckupCard({ checkup, onEdit, onDelete, onToggleComplete }: Che
               className="w-8 h-8 flex items-center justify-center rounded-full bg-primary text-white hover:bg-primary-dark transition-colors"
               aria-label={checkup.completed ? '标记为未完成' : '标记为已完成'}
             >
-              {checkup.completed ? '↩' : '✓'}
+              {checkup.completed ? <RotateCcw size={14} /> : <Check size={14} strokeWidth={2.5} />}
             </button>
           )}
           {onEdit && (
@@ -87,7 +88,7 @@ export function CheckupCard({ checkup, onEdit, onDelete, onToggleComplete }: Che
               className="w-8 h-8 flex items-center justify-center rounded-full bg-accent text-white hover:bg-blue-600 transition-colors"
               aria-label="编辑"
             >
-              ✎
+              <Pencil size={14} />
             </button>
           )}
           {onDelete && (
@@ -96,7 +97,7 @@ export function CheckupCard({ checkup, onEdit, onDelete, onToggleComplete }: Che
               className="w-8 h-8 flex items-center justify-center rounded-full bg-error text-white hover:bg-red-600 transition-colors"
               aria-label="删除"
             >
-              🗑
+              <Trash2 size={14} />
             </button>
           )}
         </div>
