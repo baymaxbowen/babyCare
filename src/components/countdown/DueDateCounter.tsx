@@ -54,16 +54,7 @@ export function DueDateCounter() {
   const tri = trimesterMap[info.trimester];
 
   return (
-    <Card className="text-center overflow-hidden relative">
-      {/* Soft radial glow behind the ring */}
-      <div
-        className="absolute inset-0 rounded-2xl pointer-events-none"
-        style={{
-          background:
-            'radial-gradient(ellipse at 50% 42%, rgba(88,204,2,0.08) 0%, transparent 68%)',
-        }}
-      />
-
+    <Card className="text-center">
       {/* Progress ring */}
       <div className="relative w-56 h-56 mx-auto mb-5">
         <svg className="w-full h-full -rotate-90" viewBox="0 0 192 192">
