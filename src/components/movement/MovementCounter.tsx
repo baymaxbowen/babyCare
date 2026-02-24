@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'preact/hooks';
-import { route } from 'preact-router';
+import { navigate } from '../../lib/navigate';
 import { currentSession, isTracking, incrementCount, endSession, resetSession } from '../../stores/movementStore';
 import { db } from '../../lib/db';
 import { vibrate } from '../../lib/notifications';
@@ -87,7 +87,7 @@ export function MovementCounter() {
 
     // 延迟跳转，让用户看到成功提示
     setTimeout(() => {
-      route('/movement');
+      navigate('/movement');
     }, 500);
   };
 

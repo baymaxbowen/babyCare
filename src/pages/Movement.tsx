@@ -1,4 +1,4 @@
-import { route } from 'preact-router';
+import { navigate } from '../lib/navigate';
 import { MovementTrend } from '../components/movement/MovementTrend';
 import { Button } from '../components/shared/Button';
 import { PageLayout } from '../components/layout/PageLayout';
@@ -6,7 +6,7 @@ import { Baby, Lightbulb } from 'lucide-preact';
 
 export function Movement() {
   const handleStartCount = () => {
-    route('/movement/count');
+    navigate('/movement/count');
   };
 
   return (

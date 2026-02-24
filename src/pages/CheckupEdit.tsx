@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'preact/hooks';
-import { route } from 'preact-router';
+import { navigate } from '../lib/navigate';
 import { db } from '../lib/db';
 import { CheckupForm } from '../components/checkup/CheckupForm';
 import { Toast } from '../components/shared/Toast';
@@ -62,7 +62,7 @@ export function CheckupEdit({ id }: CheckupEditProps) {
       }
 
       setTimeout(() => {
-        route('/checkups');
+        navigate('/checkups');
       }, 500);
     } catch (error) {
       console.error('Failed to save checkup:', error);
@@ -71,7 +71,7 @@ export function CheckupEdit({ id }: CheckupEditProps) {
   };
 
   const handleCancel = () => {
-    route('/checkups');
+    navigate('/checkups');
   };
 
   const showMessage = (message: string) => {

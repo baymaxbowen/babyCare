@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'preact/hooks';
-import { route } from 'preact-router';
+import { navigate } from '../../lib/navigate';
 import { db } from '../../lib/db';
 import { CheckupCard } from './CheckupCard';
 import { Button } from '../shared/Button';
@@ -32,11 +32,11 @@ export function CheckupList() {
   };
 
   const handleAdd = () => {
-    route('/checkups/new');
+    navigate('/checkups/new');
   };
 
   const handleEdit = (checkup: Checkup) => {
-    route(`/checkups/edit/${checkup.id}`);
+    navigate(`/checkups/edit/${checkup.id}`);
   };
 
   const handleDelete = async (checkup: Checkup) => {

@@ -1,5 +1,5 @@
 import { useEffect } from 'preact/hooks';
-import { route } from 'preact-router';
+import { navigate } from '../lib/navigate';
 import { MovementCounter } from '../components/movement/MovementCounter';
 import { isTracking, startSession } from '../stores/movementStore';
 import { PageLayout } from '../components/layout/PageLayout';
@@ -14,7 +14,7 @@ export function MovementCount() {
   }, []);
 
   const handleBack = () => {
-    route('/movement');
+    navigate('/movement');
   };
 
   return (

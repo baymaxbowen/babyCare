@@ -10,6 +10,7 @@ import { ProfileEdit } from './pages/ProfileEdit';
 import { Onboarding } from './pages/Onboarding';
 import { isOnboarded } from './stores/userStore';
 import { handleRouteChange } from './stores/routerStore';
+import { BASE_PREFIX } from './lib/navigate';
 
 export function App() {
   const onboarded = isOnboarded.value;
@@ -22,14 +23,14 @@ export function App() {
   return (
     <AppShell>
       <Router onChange={(e) => handleRouteChange(e.url)}>
-        <Route path="/" component={Home} />
-        <Route path="/movement" component={Movement} />
-        <Route path="/movement/count" component={MovementCount} />
-        <Route path="/checkups" component={Checkups} />
-        <Route path="/checkups/new" component={CheckupEdit} />
-        <Route path="/checkups/edit/:id" component={CheckupEdit} />
-        <Route path="/settings" component={Settings} />
-        <Route path="/settings/edit" component={ProfileEdit} />
+        <Route path={`${BASE_PREFIX}/`} component={Home} />
+        <Route path={`${BASE_PREFIX}/movement`} component={Movement} />
+        <Route path={`${BASE_PREFIX}/movement/count`} component={MovementCount} />
+        <Route path={`${BASE_PREFIX}/checkups`} component={Checkups} />
+        <Route path={`${BASE_PREFIX}/checkups/new`} component={CheckupEdit} />
+        <Route path={`${BASE_PREFIX}/checkups/edit/:id`} component={CheckupEdit} />
+        <Route path={`${BASE_PREFIX}/settings`} component={Settings} />
+        <Route path={`${BASE_PREFIX}/settings/edit`} component={ProfileEdit} />
       </Router>
     </AppShell>
   );

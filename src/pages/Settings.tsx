@@ -1,5 +1,5 @@
 import { useState } from 'preact/hooks';
-import { route } from 'preact-router';
+import { navigate } from '../lib/navigate';
 import { userProfile } from '../stores/userStore';
 import { db } from '../lib/db';
 import { clearUserProfile } from '../lib/storage';
@@ -26,7 +26,7 @@ export function Settings() {
   };
 
   const handleEdit = () => {
-    route('/settings/edit');
+    navigate('/settings/edit');
   };
 
   const handleReset = async () => {

@@ -1,4 +1,4 @@
-import { route } from 'preact-router';
+import { navigate } from '../../lib/navigate';
 import clsx from 'clsx';
 import { Home, Activity, Stethoscope, Settings2 } from 'lucide-preact';
 import type { LucideIcon } from 'lucide-preact';
@@ -51,7 +51,7 @@ export function BottomNav() {
             return (
               <button
                 key={item.path}
-                onClick={() => route(item.path)}
+                onClick={() => navigate(item.path)}
                 className={clsx(
                   'relative z-10 flex flex-col items-center justify-center flex-1 py-2 px-1 rounded-2xl no-select',
                   'transition-colors duration-250',

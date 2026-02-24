@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'preact/hooks';
-import { route } from 'preact-router';
+import { navigate } from '../lib/navigate';
 import { userProfile, pregnancyInfo } from '../stores/userStore';
 import { db } from '../lib/db';
 import { DueDateCounter } from '../components/countdown/DueDateCounter';
@@ -72,7 +72,7 @@ export function Home() {
         <div className="grid grid-cols-2 gap-4">
           <Card
             className="text-center cursor-pointer hover:shadow-lg transition-shadow"
-            onClick={() => route('/movement')}
+            onClick={() => navigate('/movement')}
           >
             <div className="flex justify-center mb-2"><Baby size={40} className="text-primary" /></div>
             <p className="font-bold text-text-primary">数胎动</p>
@@ -83,7 +83,7 @@ export function Home() {
 
           <Card
             className="text-center cursor-pointer hover:shadow-lg transition-shadow"
-            onClick={() => route('/checkups')}
+            onClick={() => navigate('/checkups')}
           >
             <div className="flex justify-center mb-2"><ClipboardList size={40} className="text-accent" /></div>
             <p className="font-bold text-text-primary">产检提醒</p>

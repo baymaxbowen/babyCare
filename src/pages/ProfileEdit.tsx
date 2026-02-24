@@ -1,5 +1,5 @@
 import { useState } from 'preact/hooks';
-import { route } from 'preact-router';
+import { navigate } from '../lib/navigate';
 import { userProfile, updateProfile } from '../stores/userStore';
 import { Button } from '../components/shared/Button';
 import { DatePicker } from '../components/shared/DatePicker';
@@ -40,12 +40,12 @@ export function ProfileEdit() {
 
     showMessage('个人信息已更新', 'success');
     setTimeout(() => {
-      route('/settings');
+      navigate('/settings');
     }, 500);
   };
 
   const handleCancel = () => {
-    route('/settings');
+    navigate('/settings');
   };
 
   return (

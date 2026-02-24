@@ -1,5 +1,5 @@
 import { useState } from 'preact/hooks';
-import { route } from 'preact-router';
+import { navigate } from '../lib/navigate';
 import { completeOnboarding } from '../stores/userStore';
 import { Button } from '../components/shared/Button';
 import { DatePicker } from '../components/shared/DatePicker';
@@ -22,7 +22,7 @@ export function Onboarding() {
     completeOnboarding(dueDate, userName.trim() || undefined);
 
     // 跳转到首页
-    route('/', true);
+    navigate('/', true);
   };
 
   return (
