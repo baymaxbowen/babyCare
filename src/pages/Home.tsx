@@ -10,8 +10,9 @@ import { Baby, ClipboardList, Lightbulb } from 'lucide-preact';
 import type { Checkup } from '../types/checkup';
 
 export function Home() {
-  const [upcomingCheckups, setUpcomingCheckups] = useState<Checkup[]>([]);
-  const [recentSessionCount, setRecentSessionCount] = useState(0);
+  const [toastCheckups, setToastCheckups] = useState<Checkup[]>([]);
+  const [weekSessionCount, setWeekSessionCount] = useState(0);
+  const [allUpcomingCount, setAllUpcomingCount] = useState(0);
   const [showToast, setShowToast] = useState(false);
 
   const profile = userProfile.value;
@@ -22,24 +23,30 @@ export function Home() {
   }, []);
 
   const loadData = async () => {
-    // Load upcoming checkups
-    const checkups = await db.checkups.toArray();
-    const upcoming = getUpcomingCheckups(checkups, 72); // 3 days ahead
+    const now = new Date();
 
-    setUpcomingCheckups(upcoming);
+    // Movement: count sessions from this week (Mon–Sun)
+    const startOfWeek = new Date(now);
+    const day = startOfWeek.getDay();
+    startOfWeek.setDate(startOfWeek.getDate() - (day === 0 ? 6 : day - 1));
+    startOfWeek.setHours(0, 0, 0, 0);
+    const weekCount = await db.movementSessions
+      .where('date')
+      .aboveOrEqual(startOfWeek)
+      .count();
+    setWeekSessionCount(weekCount);
 
-    if (upcoming.length > 0) {
+    // Checkups: all future uncompleted (for card badge)
+    const allCheckups = await db.checkups.toArray();
+    const upcoming = allCheckups.filter(c => new Date(c.date) > now && !c.completed);
+    setAllUpcomingCount(upcoming.length);
+
+    // Toast: only checkups within 72 hours
+    const soon = getUpcomingCheckups(allCheckups, 72);
+    setToastCheckups(soon);
+    if (soon.length > 0) {
       setShowToast(true);
     }
-
-    // Load recent movement sessions
-    const recentSessions = await db.movementSessions
-      .orderBy('date')
-      .reverse()
-      .limit(7)
-      .toArray();
-
-    setRecentSessionCount(recentSessions.length);
   };
 
   return (
@@ -70,7 +77,7 @@ export function Home() {
             <div className="flex justify-center mb-2"><Baby size={40} className="text-primary" /></div>
             <p className="font-bold text-text-primary">数胎动</p>
             <p className="text-xs text-text-secondary mt-1">
-              本周 {recentSessionCount} 次
+              本周已记录 {weekSessionCount} 次
             </p>
           </Card>
 
@@ -81,9 +88,9 @@ export function Home() {
             <div className="flex justify-center mb-2"><ClipboardList size={40} className="text-accent" /></div>
             <p className="font-bold text-text-primary">产检提醒</p>
             <p className="text-xs text-text-secondary mt-1">
-              {upcomingCheckups.length > 0
-                ? `${upcomingCheckups.length} 个待办`
-                : '暂无待办'}
+              {allUpcomingCount > 0
+                ? `${allUpcomingCount} 个待检`
+                : '暂无待检'}
             </p>
           </Card>
         </div>
@@ -103,9 +110,9 @@ export function Home() {
       </Card>
 
       {/* Upcoming checkups toast */}
-      {showToast && upcomingCheckups.length > 0 && (
+      {showToast && toastCheckups.length > 0 && (
         <Toast
-          message={`您有 ${upcomingCheckups.length} 个即将到来的产检`}
+          message={`您有 ${toastCheckups.length} 个即将到来的产检`}
           type="info"
           duration={5000}
           onClose={() => setShowToast(false)}
