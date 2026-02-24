@@ -28,7 +28,7 @@ export function BottomNav() {
 
   return (
     <div className="fixed bottom-4 left-0 right-0 flex justify-center px-4 pointer-events-none">
-      <nav className="w-full max-w-lg bg-white rounded-3xl shadow-2xl border border-border pointer-events-auto">
+      <nav className="w-full max-w-lg bg-white/70 backdrop-blur-xl rounded-3xl shadow-2xl border border-white/60 pointer-events-auto">
         <div className="relative flex items-center px-2 py-2">
 
           {/* Sliding pill — absolutely positioned, transitions on `left` */}
