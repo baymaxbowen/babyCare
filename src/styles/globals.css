@@ -1,0 +1,338 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Duolingo-inspired color palette */
+  --primary: #58CC02;
+  --primary-dark: #46A302;
+  --primary-light: #89E219;
+
+  --secondary: #FF9600;
+  --accent: #1CB0F6;
+  --warning: #FFC800;
+  --error: #FF4B4B;
+
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F7F7F7;
+  --text-primary: #3C3C3C;
+  --text-secondary: #777777;
+  --border: #E5E5E5;
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  --shadow-md: 0 4px 8px rgba(0,0,0,0.12);
+  --shadow-lg: 0 8px 16px rgba(0,0,0,0.15);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+  font-family: 'ZCOOL KuaiLe', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
+}
+
+#app {
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Duolingo-style button animations */
+@layer components {
+  .btn-duolingo {
+    @apply font-bold text-lg px-8 py-4 rounded-2xl transition-all;
+    @apply border-b-4 active:border-b-2 active:translate-y-0.5;
+    @apply shadow-md hover:shadow-lg;
+  }
+
+  .btn-primary {
+    @apply btn-duolingo bg-primary text-white border-primary-dark;
+  }
+
+  .btn-secondary {
+    @apply btn-duolingo bg-secondary text-white border-orange-700;
+  }
+
+  .btn-accent {
+    @apply btn-duolingo bg-accent text-white border-blue-700;
+  }
+
+  .card {
+    @apply bg-white rounded-2xl p-6 shadow-md border-2 border-border;
+  }
+
+  /* Form Components - Duolingo Style */
+  .form-input-base {
+    @apply w-full px-4 py-3 rounded-xl;
+    @apply border-2 border-border;
+    @apply transition-colors;
+    @apply focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20;
+  }
+
+  .form-input {
+    @apply form-input-base;
+  }
+
+  .form-select {
+    @apply form-input-base cursor-pointer;
+  }
+
+  .form-textarea {
+    @apply form-input-base resize-none;
+  }
+
+  .form-checkbox {
+    @apply w-5 h-5 rounded-lg;
+    @apply border-2 border-border;
+    @apply text-primary;
+    @apply transition-colors;
+    @apply focus:ring-2 focus:ring-primary/20 focus:border-primary;
+    @apply cursor-pointer;
+  }
+
+  .form-label {
+    @apply block text-sm font-bold text-text-primary mb-2;
+  }
+
+  /* Disabled state */
+  .form-input-base:disabled,
+  .form-checkbox:disabled {
+    @apply bg-gray-100 cursor-not-allowed opacity-60;
+  }
+
+  /* Error state (可选，为未来扩展预留) */
+  .form-input-error {
+    @apply border-error focus:border-error focus:ring-error/20;
+  }
+
+  /* Dropdown Components - Duolingo Style */
+
+  /* Dropdown Panel */
+  .dropdown-panel {
+    @apply absolute top-full left-0 right-0 mt-2;
+    @apply bg-white rounded-2xl border-2 border-border;
+    @apply shadow-lg z-50;
+    @apply max-h-60 overflow-y-auto;
+    animation: dropdown-slide-down 0.2s ease-out;
+  }
+
+  .dropdown-panel-calendar {
+    @apply max-h-none;
+  }
+
+  /* Dropdown Item */
+  .dropdown-item {
+    @apply w-full px-4 py-3 text-left;
+    @apply text-text-primary font-medium;
+    @apply transition-colors;
+    @apply border-b border-border last:border-b-0;
+    @apply flex items-center justify-between;
+  }
+
+  .dropdown-item:hover,
+  .dropdown-item-highlighted {
+    @apply bg-primary bg-opacity-5;
+  }
+
+  .dropdown-item-selected {
+    @apply text-primary font-bold;
+  }
+
+  /* Calendar Styles */
+  .calendar-day {
+    @apply aspect-square rounded-lg p-1;
+    @apply text-sm font-bold text-text-primary;
+    @apply transition-all;
+    @apply hover:bg-gray-100;
+  }
+
+  .calendar-day-other-month {
+    @apply text-gray-300;
+  }
+
+  .calendar-day-selected {
+    @apply bg-primary text-white;
+    @apply hover:bg-primary-dark;
+  }
+
+  .calendar-day-today {
+    @apply ring-2 ring-accent;
+  }
+
+  .calendar-day-disabled {
+    @apply opacity-30 cursor-not-allowed;
+    @apply hover:bg-transparent;
+  }
+
+  .calendar-nav-button {
+    @apply w-10 h-10 flex items-center justify-center;
+    @apply rounded-full hover:bg-gray-100;
+    @apply transition-colors font-bold text-lg;
+    @apply text-text-primary;
+  }
+}
+
+/* Number bounce animation for movement counter */
+@keyframes bounce-in {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Dropdown Animation */
+@keyframes dropdown-slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.number-bounce {
+  animation: bounce-in 0.3s ease-out;
+}
+
+/* Celebration confetti animation */
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(-100vh) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+.confetti {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  animation: confetti-fall 3s linear forwards;
+}
+
+/* Pulse animation for notifications */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.pulse-animation {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Slide up animation for toasts */
+@keyframes slide-up {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.slide-up {
+  animation: slide-up 0.3s ease-out;
+}
+
+/* Slide down animation for toasts (from top) */
+@keyframes slide-down {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.slide-down {
+  animation: slide-down 0.3s ease-out;
+}
+
+/* Loading spinner */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner {
+  border: 3px solid var(--border);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 0.6s linear infinite;
+}
+
+/* Safe area for mobile devices (notch support) */
+@supports (padding-top: env(safe-area-inset-top)) {
+  body {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* Disable text selection for button-like elements */
+.no-select {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-secondary);
+}

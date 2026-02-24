@@ -1,0 +1,18 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="512" height="512" rx="128" fill="#58CC02"/>
+
+  <!-- Baby icon -->
+  <circle cx="256" cy="200" r="80" fill="white"/>
+
+  <!-- Body -->
+  <ellipse cx="256" cy="340" rx="100" ry="120" fill="white"/>
+
+  <!-- Face details -->
+  <circle cx="230" cy="190" r="12" fill="#58CC02"/>
+  <circle cx="282" cy="190" r="12" fill="#58CC02"/>
+  <path d="M 230 220 Q 256 235 282 220" stroke="#58CC02" stroke-width="6" stroke-linecap="round" fill="none"/>
+
+  <!-- Heart accent -->
+  <path d="M 370 120 Q 370 100 390 100 Q 410 100 410 120 Q 410 145 390 165 L 370 145 Q 370 120 370 120 Z" fill="#FF9600"/>
+</svg>
