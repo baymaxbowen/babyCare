@@ -1,13 +1,13 @@
 import { route } from 'preact-router';
 import clsx from 'clsx';
 import { Home, Activity, Stethoscope, Settings2 } from 'lucide-preact';
-import type { ComponentType } from 'preact';
+import type { LucideIcon } from 'lucide-preact';
 import { currentUrl } from '../../stores/routerStore';
 
 interface NavItem {
   path: string;
   label: string;
-  icon: ComponentType<{ size?: number; strokeWidth?: number }>;
+  icon: LucideIcon;
 }
 
 const navItems: NavItem[] = [
